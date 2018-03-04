@@ -4,14 +4,14 @@ import unittest
 import markdown2
 from jinja2 import Environment
 
-from generate import read_all_posts, get_all_file_paths, clean_filename, clean_site_directory, SITE_DIR
+from generate import read_all_posts, get_all_file_paths, clean_filename, clean_site_directory, SITE_DIR, deploy_site
 
 
 class GenerateTests(unittest.TestCase):
 
     def test_read_all_posts(self):
         posts = read_all_posts(directory='posts')
-        self.assertEqual({'test-post':'Name of the post'}, posts)
+        self.assertEqual({'test-post': 'Name of the post'}, posts)
 
     def test_get_all_file_paths_are_valid(self):
         file_paths = get_all_file_paths(directory='posts')
@@ -30,6 +30,9 @@ class GenerateTests(unittest.TestCase):
         parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
         open("{}/{}/test.file".format(parent_dir, SITE_DIR), "w+")
         clean_site_directory(os.path.join(parent_dir, SITE_DIR))
+
+    def test_deploy(self):
+        deploy_site()
 
     def test_rendering_template(self):
         template = '''
