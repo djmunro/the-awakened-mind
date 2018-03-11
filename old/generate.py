@@ -111,15 +111,15 @@ def get_all_file_paths(directory):
     return [os.path.join(directory, file) for file in file_names]
 
 
-def clean_filename(filepath):
-    filename = remove_file_path_deatils(filepath)
-    return convert_spaces_to_hyphens(filename)
-
-
 def read_file_content(filepath):
     path = os.path.join(os.path.dirname(__file__), filepath)
     with open(path, 'r') as file:
         return file.read()
+
+
+def clean_filename(filepath):
+    filename = remove_file_path_deatils(filepath)
+    return convert_spaces_to_hyphens(filename)
 
 
 def remove_file_path_deatils(filepath):

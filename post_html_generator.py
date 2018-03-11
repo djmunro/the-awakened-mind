@@ -10,4 +10,7 @@ class PostHtmlGenerator(object):
 
     def render_template(self, template):
         template_loader = FileSystemLoader(searchpath=os.path.join(os.path.dirname(__file__), '_templates'))
-        return Environment(loader=template_loader).get_template(template).render(post=self.post.headers)
+        return Environment(loader=template_loader).get_template(template).render(
+            post=self.post.headers,
+            content=self.post.content
+        )
